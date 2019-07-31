@@ -55,3 +55,33 @@ func TestPreProcessData(t *testing.T) {
 		}
 	}
 }
+
+func TestIsNeighbor(t *testing.T) {
+	d := []struct {
+		w    string
+		word string
+		res  bool
+	}{
+		{
+			w:    "dog",
+			word: "dig",
+			res:  true,
+		},
+		{
+			w:    "dog",
+			word: "cat",
+			res:  false,
+		},
+		{
+			w:    "dig",
+			word: "dot",
+			res:  false,
+		},
+	}
+	for i, e := range d {
+		res := IsNeighbor(e.w, e.word)
+		if res != e.res {
+			t.Errorf("%d# should have %t, got %t", i, e.res, res)
+		}
+	}
+}

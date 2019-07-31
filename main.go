@@ -31,6 +31,18 @@ func IsWordInTheUniverse(word string, universe *[]string) bool {
 	return false
 }
 
+// IsNeighbor return true if the two words
+// have exactly 1 different character
+func IsNeighbor(w, word string) bool {
+	var diff int
+	for i := 0; i < len(w); i++ {
+		if w[i] != word[i] {
+			diff ++
+		}
+	}
+	return diff == 1
+}
+
 func main() {
 	f, err := os.Open("./wordlist.txt")
 
