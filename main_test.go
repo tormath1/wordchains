@@ -21,7 +21,7 @@ func TestIsWordInTheUniverse(t *testing.T) {
 	}
 
 	for _, e := range d {
-		res := IsWordInTheUniverse(e.w, &e.u)
+		res := isWordInTheUniverse(e.w, &e.u)
 		if res != e.r {
 			t.Errorf("should have %t, got %t", e.r, res)
 		}
@@ -47,7 +47,7 @@ func TestPreProcessData(t *testing.T) {
 	}
 	for _, e := range d {
 		var r []string
-		PreProcessData(e.w, &e.list, &r)
+		preProcessData(e.w, &e.list, &r)
 		for i, el := range r {
 			if el != e.res[i] {
 				t.Errorf("should have %s, got %s", e.res[i], el)
@@ -79,7 +79,7 @@ func TestIsNeighbor(t *testing.T) {
 		},
 	}
 	for i, e := range d {
-		res := IsNeighbor(e.w, e.word)
+		res := isNeighbor(e.w, e.word)
 		if res != e.res {
 			t.Errorf("%d# should have %t, got %t", i, e.res, res)
 		}
@@ -105,7 +105,7 @@ func TestGetNeighbors(t *testing.T) {
 	}
 	for n, e := range d {
 		var res []string
-		GetNeighbors(e.w, &e.u, &res)
+		getNeighbors(e.w, &e.u, &res)
 		for i, el := range res {
 			if el != e.exp[i] {
 				t.Errorf("%d# should have %s, got %s", n, e.exp[i], el)

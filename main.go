@@ -12,13 +12,10 @@ type node struct {
 	word    string
 }
 
-// FindShortestChain will return the shortest
-// path between the start and the end word by using
-// breadth first search
-func FindShortestChain(start, end string, univ, chain *[]string) {
+func findShortestChain(start, end string, univ, chain *[]string) {
 	toVisit := []node{
 		node{
-			word: start,
+			word:    start,
 			parents: nil,
 		},
 	}
@@ -30,7 +27,7 @@ func FindShortestChain(start, end string, univ, chain *[]string) {
 			pprint(toVisit[i].parents, chain)
 			return
 		}
-		GetNeighbors(toVisit[i].word, univ, &neigh)
+		getNeighbors(toVisit[i].word, univ, &neigh)
 		for _, n := range neigh {
 			if !contains(n, &visited) {
 				visited = append(visited, n)
@@ -50,7 +47,6 @@ func pprint(chain []node, res *[]string) {
 	pprint(chain[0].parents, res)
 }
 
-
 func contains(el string, arr *[]string) bool {
 	for _, a := range *arr {
 		if strings.Compare(el, a) == 0 {
@@ -60,19 +56,19 @@ func contains(el string, arr *[]string) bool {
 	return false
 }
 
-// GetNeighbors return the word arounds the given word
+// getNeighbors return the word arounds the given word
 // with 1 character of difference
-func GetNeighbors(word string, universe, neigh *[]string) {
+func getNeighbors(word string, universe, neigh *[]string) {
 	for _, w := range *universe {
-		if IsNeighbor(w, word) {
+		if isNeighbor(w, word) {
 			*neigh = append(*neigh, w)
 		}
 	}
 }
 
-// PreProcessData will remove words who are
+// preProcessData will remove words who are
 // not the same size as the inputs
-func PreProcessData(start string, words, res *[]string) {
+func preProcessData(start string, words, res *[]string) {
 	l := len(start)
 
 	for _, w := range *words {
@@ -82,10 +78,10 @@ func PreProcessData(start string, words, res *[]string) {
 	}
 }
 
-// IsWordInTheUniverse this function seems to be directly
+// isWordInTheUniverse this function seems to be directly
 // fetch from the stargate. Seriously, we return a boolean
 // in order to check if start and end word are in the universe.
-func IsWordInTheUniverse(word string, universe *[]string) bool {
+func isWordInTheUniverse(word string, universe *[]string) bool {
 	for _, w := range *universe {
 		if strings.Compare(word, w) == 0 {
 			return true
@@ -96,7 +92,7 @@ func IsWordInTheUniverse(word string, universe *[]string) bool {
 
 // IsNeighbor return true if the two words
 // have exactly 1 different character
-func IsNeighbor(w, word string) bool {
+func isNeighbor(w, word string) bool {
 	var diff int
 	for i := 0; i < len(w); i++ {
 		if w[i] != word[i] {
@@ -130,13 +126,13 @@ func main() {
 		log.Fatal(err)
 	}
 
-	PreProcessData(start, &wordsList, &words)
+	preProcessData(start, &wordsList, &words)
 
-	if !IsWordInTheUniverse(start, &words) || !IsWordInTheUniverse(end, &words) {
+	if !isWordInTheUniverse(start, &words) || !isWordInTheUniverse(end, &words) {
 		log.Fatal("start or stop word is not in the universe")
 	}
 
 	var chain []string
-	FindShortestChain(start, end, &words, &chain)
+	findShortestChain(start, end, &words, &chain)
 	log.Println(chain)
 }
