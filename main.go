@@ -7,6 +7,16 @@ import (
 	"strings"
 )
 
+// GetNeighbors return the word arounds the given word
+// with 1 character of difference
+func GetNeighbors(word string, universe, neigh *[]string) {
+	for _, w := range *universe {
+		if IsNeighbor(w, word) {
+			*neigh = append(*neigh, w)
+		}
+	}
+}
+
 // PreProcessData will remove words who are
 // not the same size as the inputs
 func PreProcessData(start string, words, res *[]string) {

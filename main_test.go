@@ -85,3 +85,31 @@ func TestIsNeighbor(t *testing.T) {
 		}
 	}
 }
+
+func TestGetNeighbors(t *testing.T) {
+	d := []struct {
+		w string
+		u []string
+		exp []string
+	}{
+		{
+			w: "dog",
+			u: []string{"dig", "dot", "dat"},
+			exp: []string{"dig", "dot"},
+		},
+		{
+			w: "dog",
+			u: []string{"zzz", "bbb", "ccc"},
+			exp: []string{},
+		},
+	}
+	for n, e := range d {
+		var res []string
+		GetNeighbors(e.w, &e.u, &res)
+		for i, el := range res {
+			if el != e.exp[i] {
+				t.Errorf("%d# should have %s, got %s", n, e.exp[i], el)
+			}
+		}
+	}
+}
