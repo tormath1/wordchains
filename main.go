@@ -7,6 +7,59 @@ import (
 	"strings"
 )
 
+type node struct {
+	parents []node
+	word    string
+}
+
+// FindShortestChain will return the shortest
+// path between the start and the end word by using
+// breadth first search
+func FindShortestChain(start, end string, univ, chain *[]string) {
+	toVisit := []node{
+		node{
+			word: start,
+			parents: nil,
+		},
+	}
+	var visited []string
+	var neigh []string
+
+	for i := 0; i < len(toVisit); i++ {
+		if strings.Compare(toVisit[i].word, end) == 0 {
+			pprint(toVisit[i].parents, chain)
+			return
+		}
+		GetNeighbors(toVisit[i].word, univ, &neigh)
+		for _, n := range neigh {
+			if !contains(n, &visited) {
+				visited = append(visited, n)
+				no := node{word: n, parents: []node{toVisit[i]}}
+				toVisit = append(toVisit, no)
+			}
+		}
+		neigh = nil
+	}
+}
+
+func pprint(chain []node, res *[]string) {
+	if chain == nil {
+		return
+	}
+	*res = append(*res, chain[0].word)
+	pprint(chain[0].parents, res)
+}
+
+
+func contains(el string, arr *[]string) bool {
+	for _, a := range *arr {
+		if strings.Compare(el, a) == 0 {
+			return true
+		}
+	}
+	return false
+}
+
 // GetNeighbors return the word arounds the given word
 // with 1 character of difference
 func GetNeighbors(word string, universe, neigh *[]string) {
@@ -47,7 +100,7 @@ func IsNeighbor(w, word string) bool {
 	var diff int
 	for i := 0; i < len(w); i++ {
 		if w[i] != word[i] {
-			diff ++
+			diff++
 		}
 	}
 	return diff == 1
@@ -56,8 +109,8 @@ func IsNeighbor(w, word string) bool {
 func main() {
 	f, err := os.Open("./wordlist.txt")
 
-	start := "dog"
-	end := "cat"
+	start := "ruby"
+	end := "code"
 	if len(start) != len(end) {
 		log.Fatal("start and end words must have the same size")
 	}
@@ -82,4 +135,8 @@ func main() {
 	if !IsWordInTheUniverse(start, &words) || !IsWordInTheUniverse(end, &words) {
 		log.Fatal("start or stop word is not in the universe")
 	}
+
+	var chain []string
+	FindShortestChain(start, end, &words, &chain)
+	log.Println(chain)
 }

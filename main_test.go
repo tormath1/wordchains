@@ -88,18 +88,18 @@ func TestIsNeighbor(t *testing.T) {
 
 func TestGetNeighbors(t *testing.T) {
 	d := []struct {
-		w string
-		u []string
+		w   string
+		u   []string
 		exp []string
 	}{
 		{
-			w: "dog",
-			u: []string{"dig", "dot", "dat"},
+			w:   "dog",
+			u:   []string{"dig", "dot", "dat"},
 			exp: []string{"dig", "dot"},
 		},
 		{
-			w: "dog",
-			u: []string{"zzz", "bbb", "ccc"},
+			w:   "dog",
+			u:   []string{"zzz", "bbb", "ccc"},
 			exp: []string{},
 		},
 	}
