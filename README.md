@@ -12,3 +12,5 @@ So, I read like a dozen times kata19. Trying to find hints into the text.
 day 3: I've spent my evening watching mooc from MIT about search algorithm, and I've found something about breadth first search: it was exaclty what i'm looking for yesterday: a root with many leafs. And the guy was like : if you have a rubiks cube, you can find the shortest number of moves in order to solve it. Well, this is exactly our problem.
 So now, I've made all the preliminiary work: preprocess data, ensure that words are in the dataset. I can implement this algorithm. and yes, finally it wrks ! i spent a few times trying to figure out how to store the previous word in order to build the path, I've finally decide to go with a list of a `node` struct.
 well, I'am under the second for now. Let's see if we can go faster with a recursive way
+
+a few minutes later: something I've learn on my experiences: early optimization is the gate of the hells. It works really like this, so we do not need to improve the efficience
