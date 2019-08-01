@@ -14,3 +14,8 @@ So now, I've made all the preliminiary work: preprocess data, ensure that words 
 well, I'am under the second for now. Let's see if we can go faster with a recursive way
 
 a few minutes later: something I've learn on my experiences: early optimization is the gate of the hells. It works really like this, so we do not need to improve the efficience
+
+ToDo: 
+
+- [ ] add an interface in order to implement many algorithms to solve the problem
+- [ ] add a CLI for the user
