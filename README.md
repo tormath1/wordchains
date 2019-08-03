@@ -6,6 +6,8 @@ Example: `code` -> `ruby`: code rode robe rube ruby
 
 ## video (details, explanation of the algorithm and show case)
 
+https://www.youtube.com/watch?v=w0f5YZUldf0
+
 ## getting started
 
 Make sure that `go` is installed on your machine
