@@ -4,6 +4,30 @@ Try to link two words by a chain of words with one different character.
 
 Example: `code` -> `ruby`: code rode robe rube ruby
 
+## video (details, explanation of the algorithm and show case)
+
+## getting started
+
+Make sure that `go` is installed on your machine
+
+```shell
+$ go version
+go version go1.12.7 linux/amd64
+```
+
+Clone this repo and cd into it
+
+```
+$ git clone https://github.com/tormath1/word-chain
+$ cd $_
+```
+
+If you run right now the `main.go`, you will get the word chain between `code` and `ruby`. You can try with other words by editing `main.go` (L 108 / 109)
+
+```
+$ go run main.go
+```
+
 ## log book of the exercice
 
 ### 1st day
